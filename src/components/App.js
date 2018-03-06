@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import Contact from './Contact';
+import ContactForm from './ContactForm';
 import CONTACT from './DummyContact';
 import {
   FlatList,
@@ -26,6 +27,13 @@ export default class App extends Component{
     this.setState({ contactData: CONTACT});
   }
 
+  _insertData(data) {
+    const { contactData } = this.state;
+    this.setState({
+      contactData: [ ...contactData, data ],
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,9 +51,7 @@ export default class App extends Component{
                 />
             )}
         />
-        <Text style={styles.instructions}>
-          Form
-        </Text>
+        <ContactForm contactFormCallback={(data) => this._insertData(data)}/>
       </View>
     );
   }
