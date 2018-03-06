@@ -5,31 +5,44 @@
  */
 
 import React, { Component } from 'react';
+import Contact from './Contact';
+import CONTACT from './DummyContact';
 import {
-  Platform,
+  FlatList,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      contactData: [],
+    }
+  }
 
-type Props = {};
-export default class App extends Component<Props> {
+  componentDidMount() {
+    this.setState({ contactData: CONTACT});
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Search
         </Text>
-        <Text style={styles.instructions}>
-          List
-        </Text>
+        <FlatList
+            data={this.state.contactData}
+            keyExtractor={item => item.email}
+            renderItem={({ item: {name, email, image} }) => (
+                <Contact
+                    contactName={name}
+                    contactEmail={email}
+                    imageURL={image}
+                />
+            )}
+        />
         <Text style={styles.instructions}>
           Form
         </Text>
@@ -41,8 +54,6 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
     padding: 20,
   },
