@@ -11,20 +11,24 @@ import CONTACT from './DummyContact';
 import {
   FlatList,
   StyleSheet,
-  Text,
   View,
+  Text,
 } from 'react-native';
+import SearchContact from './SearchContact';
 
-export default class App extends Component{
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       contactData: [],
-    }
+      searchInput: '',
+    };
+
+    this._searchInput = this._searchInput.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ contactData: CONTACT});
+    this.setState({ contactData: CONTACT });
   }
 
   _insertData(data) {
@@ -34,25 +38,42 @@ export default class App extends Component{
     });
   }
 
+  _searchInput(value) {
+    this.setState({
+      searchInput: value,
+    });
+  }
+
+  _filterList() {
+    const contact = this.state.contactData;
+    const searchValue = this.state.searchInput;
+    const filterList = contact.filter((value) => {
+      return value.name.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    return filterList;
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Search
-        </Text>
-        <FlatList
-            data={this.state.contactData}
-            keyExtractor={item => item.email}
-            renderItem={({ item: {name, email, image} }) => (
-                <Contact
-                    contactName={name}
-                    contactEmail={email}
-                    imageURL={image}
-                />
-            )}
-        />
-        <ContactForm contactFormCallback={(data) => this._insertData(data)}/>
-      </View>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>
+            Contact List
+          </Text>
+          <SearchContact searchNameInput={this._searchInput}/>
+          <FlatList
+              style={{ height: 500, paddingTop: 20, }}
+              data={this._filterList()}
+              keyExtractor={item => item.email}
+              renderItem={({ item: { name, email, image } }) => (
+                  <Contact
+                      contactName={name}
+                      contactEmail={email}
+                      imageURL={image}
+                  />
+              )}
+          />
+          <ContactForm contactFormCallback={(data) => this._insertData(data)}/>
+        </View>
     );
   }
 }
