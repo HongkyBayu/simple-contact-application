@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import md5 from 'md5';
 
-export default function Contact({ contactName, contactEmail , imageURL}) {
+export default function Contact({ contactName, contactEmail }) {
   return (
       <View style={styles.contactContainer}>
-        <Image style={{ width: 60, height: 60 }} source={{ uri: imageURL }}/>
+        <Image style={{ width: 60, height: 60 }} source={{ uri: `https://gravatar.com/avatar/${md5(contactEmail)}.png?s=200` }}/>
         <Text style={styles.name}>{contactName}</Text>
-        <Text style={styles.email}>{contactEmail}</Text>
       </View>
   );
 }

@@ -22,6 +22,7 @@ export default class App extends Component {
     this.state = {
       contactData: [],
       searchInput: '',
+      refreshing: false,
     };
 
     this._searchInput = this._searchInput.bind(this);
@@ -44,6 +45,10 @@ export default class App extends Component {
     });
   }
 
+  _onRefresh() {
+    this.setState({ refreshing: true });
+  }
+
   _filterList() {
     const contact = this.state.contactData;
     const searchValue = this.state.searchInput;
@@ -61,14 +66,15 @@ export default class App extends Component {
           </Text>
           <SearchContact searchNameInput={this._searchInput}/>
           <FlatList
-              style={{ height: 500, paddingTop: 20, }}
+              style={{ height: 450, paddingTop: 20, }}
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
               data={this._filterList()}
               keyExtractor={item => item.email}
-              renderItem={({ item: { name, email, image } }) => (
+              renderItem={({ item: { name, email } }) => (
                   <Contact
                       contactName={name}
                       contactEmail={email}
-                      imageURL={image}
                   />
               )}
           />

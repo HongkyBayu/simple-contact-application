@@ -7,7 +7,6 @@ export default class ContactForm extends Component {
     this.state = {
       nameInput: '',
       emailInput: '',
-      imageUser: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     }
     this._onInputNameChange = this._onInputNameChange.bind(this);
     this._onInputEmailChange = this._onInputEmailChange.bind(this);
@@ -30,7 +29,6 @@ export default class ContactForm extends Component {
     const results = {
       name: this.state.nameInput,
       email: this.state.emailInput,
-      image: this.state.imageUser,
     }
     this.props.contactFormCallback(results);
   }

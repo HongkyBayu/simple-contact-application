@@ -23,16 +23,16 @@ describe('Contact From', () => {
 
     it('should return the input based on user typing = rangga@gmail.com', () => {
       const wrapper = shallow(<ContactForm/>);
-      const nameInput = wrapper.find('TextInput').at(1);
-      nameInput.props().onChangeText('rangga@gmail.com');
+      const emailInput = wrapper.find('TextInput').at(1);
+      emailInput.props().onChangeText('rangga@gmail.com');
       wrapper.update();
       expect(wrapper.state().emailInput).toEqual('rangga@gmail.com');
     });
 
     it('should return the input based on user typing = bayu@gmail.com', () => {
       const wrapper = shallow(<ContactForm/>);
-      const nameInput = wrapper.find('TextInput').at(1);
-      nameInput.props().onChangeText('bayu@gmail.com');
+      const emailInput = wrapper.find('TextInput').at(1);
+      emailInput.props().onChangeText('bayu@gmail.com');
       wrapper.update();
       expect(wrapper.state().emailInput).toEqual('bayu@gmail.com');
     });

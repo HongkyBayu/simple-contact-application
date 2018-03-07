@@ -5,13 +5,6 @@ import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 describe('App', () => {
-  describe('Render Snapshot', () => {
-    it('should render the matching snapshot correctly', () => {
-      const app = renderer.create(<App/>).toJSON();
-      expect(app).toMatchSnapshot();
-    });
-  });
-
   describe('#showData', () => {
     it('should show data based on input state', () => {
       const wrapper = shallow(<App/>);
