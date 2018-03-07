@@ -5,7 +5,7 @@ const CONTACT = [
   },
   {
     'name': 'Neel',
-    'email': 'vascodegama1@gmail.com',
+    'email': 'vascodagama1@gmail.com',
   },
   {
     'name': 'Chetan',
@@ -22,6 +22,10 @@ const CONTACT = [
   {
     'name': 'Bintoro',
     'email': 'saviour.of.darkness@gmail.com',
+  },
+  {
+    'name': 'Iqbal',
+    'email': 'iqbalfakhri@gmail.com',
   },
 
 ];

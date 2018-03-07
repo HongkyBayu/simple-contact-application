@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import md5 from 'md5';
+import PropTypes from 'prop-types';
 
 export default function Contact({ contactName, contactEmail }) {
   return (
@@ -11,12 +12,18 @@ export default function Contact({ contactName, contactEmail }) {
   );
 }
 
+Contact.propTypes = {
+  contactName: PropTypes.string.isRequired,
+  contactEmail: PropTypes.string.isRequired,
+};
+
 const styles = StyleSheet.create({
   contactContainer: {
     flex: 1,
     alignItems: 'flex-end',
     flexDirection: 'row',
-    borderWidth: 0.5,
+    borderBottomWidth: 0.5,
+    padding: 5,
   },
   name: {
     padding: 10,
