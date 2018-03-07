@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export default function Contact({ contactName, contactEmail }) {
   return (
       <View style={styles.contactContainer}>
-        <Image style={{ width: 60, height: 60 }} source={{ uri: `https://gravatar.com/avatar/${md5(contactEmail)}.png?s=200` }}/>
+        <Image style={{ width: 60, height: 60, borderRadius: 10}} source={{ uri: `https://gravatar.com/avatar/${md5(contactEmail)}.png?s=200` }}/>
         <Text style={styles.name}>{contactName}</Text>
       </View>
   );

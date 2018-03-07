@@ -1,7 +1,6 @@
 import 'react-native';
 import React from 'react';
 import App from '../src/components/App';
-import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 describe('App', () => {

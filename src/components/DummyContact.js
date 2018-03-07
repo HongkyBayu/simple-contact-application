@@ -27,6 +27,10 @@ const CONTACT = [
     'name': 'Iqbal',
     'email': 'iqbalfakhri@gmail.com',
   },
+  {
+    'name': 'Eddo',
+    'email': 'eddocareera.i.p@gmail.com',
+  },
 
 ];
 
