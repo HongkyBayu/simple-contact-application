@@ -1,12 +1,12 @@
 import 'react-native';
 import React from 'react';
-import App from '../src/components/App';
+import ContactList from '../src/components/ContactList';
 import { shallow } from 'enzyme';
 
-describe('App', () => {
+describe('ContactList', () => {
   describe('#showData', () => {
     it('should show data based on input state', () => {
-      const wrapper = shallow(<App/>);
+      const wrapper = shallow(<ContactList/>);
       wrapper.setState({
         contactData: [
           {
@@ -26,7 +26,7 @@ describe('App', () => {
     });
 
     it('should show data based on input state', () => {
-      const wrapper = shallow(<App/>);
+      const wrapper = shallow(<ContactList/>);
       wrapper.setState({
         contactData: [
           {
@@ -58,7 +58,7 @@ describe('App', () => {
 
   describe('#filterList', () => {
     it('should filter the list based on search input from user "Rang"', () => {
-      const wrapper = shallow(<App/>);
+      const wrapper = shallow(<ContactList/>);
       wrapper.setState({
         searchInput: 'Rang',
         contactData: [
@@ -86,7 +86,7 @@ describe('App', () => {
     });
 
     it('should filter the list based on search input from user "Bay"', () => {
-      const wrapper = shallow(<App/>);
+      const wrapper = shallow(<ContactList/>);
       wrapper.setState({
         searchInput: 'Bay',
         contactData: [
