@@ -35,7 +35,7 @@ export default class ContactList extends Component {
   _insertData(data) {
     const { contactData } = this.state;
     this.setState({
-      contactData: [ ...contactData, data ],
+      contactData: [ data , ...contactData],
     });
   }
 
@@ -88,12 +88,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    padding: 20,
+    padding: 10,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
   },
   instructions: {
     textAlign: 'center',

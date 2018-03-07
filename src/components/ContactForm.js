@@ -38,10 +38,12 @@ export default class ContactForm extends Component {
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
           <TextInput
+              style={styles.nameInput}
               placeholder="Name"
               onChangeText={this._onInputNameChange}
           />
           <TextInput
+              style={styles.emailInput}
               placeholder="Email"
               onChangeText={this._onInputEmailChange}
           />
@@ -65,4 +67,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
   },
+  nameInput: {
+    backgroundColor: '#D4D8D8',
+    borderRadius: 5,
+    width: 240,
+  },
+  emailInput: {
+    backgroundColor: '#D4D8D8',
+    borderRadius: 5,
+    width: 240,
+    marginTop: 3,
+  }
 });

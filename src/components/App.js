@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import Home from '../home/Home';
+import LoginPage from '../login/LoginPage';
 import ContactList from './ContactList';
 
 const RootStack = StackNavigator(
     {
-      Home: {
-        screen: Home,
+      LoginPage: {
+        screen: LoginPage,
       },
       Contact: {
         screen: ContactList,
       },
     },
     {
-      initialRouteName: 'Home',
+      initialRouteName: 'LoginPage',
     },
 );
 
