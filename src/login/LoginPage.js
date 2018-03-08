@@ -1,45 +1,91 @@
 import React, { Component } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, Text, AlertIOS } from 'react-native';
+
+const credential = {
+  username: 'Ahong',
+  password: 'Hongky',
+};
 
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: {
-        value: '',
-        isExist: false,
-      },
-      password: {
-        value: '',
-        isExist: false,
-      },
+      username: '',
+      password: '',
+      error: '',
     };
 
     this._onChangeUsernameInput = this._onChangeUsernameInput.bind(this);
     this._onChangePasswordInput = this._onChangePasswordInput.bind(this);
+    this._onSubmit = this._onSubmit.bind(this);
+    this._isPasswordEmpty = this._isPasswordEmpty.bind(this);
+    this._isUsernameEmpty = this._isUsernameEmpty.bind(this);
+    this._isCredentialValid = this._isCredentialValid.bind(this);
   }
 
   _onChangeUsernameInput(text) {
     this.setState({
-      username: {
-        value: text,
-        isExist: text.length !== 0,
-      },
+      username: text,
     });
   }
 
   _onChangePasswordInput(text) {
     this.setState({
-      password: {
-        value: text,
-        isExist: text.length !== 0,
-      },
+      password: text,
     });
   }
 
+  _isUsernameEmpty() {
+    const { username } = this.state;
+    return username.length === 0;
+  }
+
+  _isPasswordEmpty() {
+    const { password } = this.state;
+    return password.length === 0;
+  }
+
+  _isCredentialValid() {
+    const { username, password } = this.state;
+    return username === credential.username && password === credential.password;
+  }
+
+  _onSubmit() {
+    switch (true) {
+      case (this._isPasswordEmpty() && this._isUsernameEmpty()):
+        this.setState({
+          error: 'Username and Password required',
+        });
+        break;
+      case (this._isUsernameEmpty()):
+        this.setState({
+          error: 'Username required',
+        });
+        break;
+      case (this._isPasswordEmpty()):
+        this.setState({
+          error: 'Password required',
+        });
+        break;
+      case (this._isCredentialValid()):
+        this.props.navigation.navigate('ContactList');
+        break;
+      default:
+        this.setState({
+          error: '',
+        });
+        AlertIOS.alert(
+            'Authentication Error!',
+            'Username and/or Password not match',
+        );
+    }
+  }
+
   render() {
+    const { error } = this.state;
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text>{error}</Text>
           <TextInput
               onChangeText={this._onChangeUsernameInput}
               placeholder="Username"
@@ -50,7 +96,7 @@ export default class LoginPage extends Component {
           />
           <Button
               title="Contact"
-              onPress={() => this.props.navigation.navigate('Contact')}
+              onPress={this._onSubmit}
           />
         </View>
     );

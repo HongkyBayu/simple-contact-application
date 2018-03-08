@@ -8,7 +8,7 @@ const RootStack = StackNavigator(
       LoginPage: {
         screen: LoginPage,
       },
-      Contact: {
+      ContactList: {
         screen: ContactList,
       },
     },
