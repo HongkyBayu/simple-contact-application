@@ -35,7 +35,7 @@ export default class ContactList extends Component {
   _insertData(data) {
     const { contactData } = this.state;
     this.setState({
-      contactData: [ data , ...contactData],
+      contactData: [ data, ...contactData ],
     });
   }
 
@@ -99,4 +99,16 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+});
+
+ContactList.navigationOptions = ({ navigation: { goBack } }) => ({
+  headerTitle: 'Contact',
+  headerLeft: null,
+  headerRight: (
+      <Text
+          onPress={() => goBack()}
+      >
+        Logout
+      </Text>
+  ),
 });

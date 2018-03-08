@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Button, TextInput, Text, AlertIOS, StyleSheet } from 'react-native';
+//import Animation from 'lottie-react-native';
+//import anim from '../../assets/soda_loader.json';
 
 const credential = {
   username: 'Ahong',
@@ -22,6 +24,10 @@ export default class LoginPage extends Component {
     this._isUsernameEmpty = this._isUsernameEmpty.bind(this);
     this._isCredentialValid = this._isCredentialValid.bind(this);
   }
+
+//  componentDidMount() {
+//    this.animation.play();
+//  }
 
   _onChangeUsernameInput(text) {
     this.setState({
@@ -87,6 +93,19 @@ export default class LoginPage extends Component {
     const { error, password, username } = this.state;
     return (
         <View style={styles.container}>
+          {/*<View>*/}
+            {/*<Animation*/}
+                {/*ref={animation => {*/}
+                  {/*this.animation = animation;*/}
+                {/*}}*/}
+                {/*style={{*/}
+                  {/*width: 80,*/}
+                  {/*height: 80*/}
+                {/*}}*/}
+                {/*loop={true}*/}
+                {/*source={anim}*/}
+            {/*/>*/}
+          {/*</View>*/}
           <Text style={styles.errorMessage}>{error}</Text>
           <TextInput
               style={styles.usernameInput}
@@ -133,5 +152,5 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: 'red',
-  }
+  },
 });

@@ -81,5 +81,18 @@ describe('Login Page', () => {
       buttonElement.props().onPress();
       expect(wrapper.state().error).toEqual('Username and Password required')
     });
+
+    it('should return the proper navigation when the credential is valid', () => {
+      const mockFunction = jest.fn();
+      const wrapper = shallow(<LoginPage navigation={{navigate: mockFunction}}/>);
+      wrapper.setState({
+        username: 'Ahong',
+        password: 'Hongky',
+      });
+      const buttonElement = wrapper.find('Button').at(0);
+      buttonElement.props().onPress();
+      expect(mockFunction).toHaveBeenCalledTimes(1);
+      expect(mockFunction).toHaveBeenCalledWith('ContactList');
+    });
   });
 });
