@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, TextInput, Text, AlertIOS } from 'react-native';
+import { View, Button, TextInput, Text, AlertIOS, StyleSheet } from 'react-native';
 
 const credential = {
   username: 'Ahong',
@@ -72,6 +72,8 @@ export default class LoginPage extends Component {
         break;
       default:
         this.setState({
+          username: '',
+          password: '',
           error: '',
         });
         AlertIOS.alert(
@@ -82,23 +84,54 @@ export default class LoginPage extends Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, password, username } = this.state;
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>{error}</Text>
+        <View style={styles.container}>
+          <Text style={styles.errorMessage}>{error}</Text>
           <TextInput
+              style={styles.usernameInput}
               onChangeText={this._onChangeUsernameInput}
               placeholder="Username"
+              value={username}
           />
           <TextInput
+              style={styles.passwordInput}
               onChangeText={this._onChangePasswordInput}
               placeholder="Password"
+              secureTextEntry={true}
+              value={password}
           />
           <Button
-              title="Contact"
+              title="Sign In"
               onPress={this._onSubmit}
           />
         </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  usernameInput: {
+    backgroundColor: '#D4D8D8',
+    width: 200,
+    height: 30,
+    textAlign: 'center',
+    borderRadius: 10,
+    margin: 10,
+  },
+  passwordInput: {
+    backgroundColor: '#D4D8D8',
+    width: 200,
+    height: 30,
+    textAlign: 'center',
+    borderRadius: 10,
+  },
+  errorMessage: {
+    color: 'red',
+  }
+});
