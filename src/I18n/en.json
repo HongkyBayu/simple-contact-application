@@ -1,4 +1,7 @@
 {
   "ContactList": "Contact List",
-  "SearchPlaceholder": "Search"
+  "SearchPlaceholder": "Search",
+  "SubmitButtonText": "Submit Data",
+  "ContactContainerHeader": "Contact",
+  "Name": "Name"
 }

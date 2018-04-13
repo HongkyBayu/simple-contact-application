@@ -1,4 +1,7 @@
 {
   "ContactList": "Daftar Kontak",
-  "SearchPlaceholder": "Mencari"
+  "SearchPlaceholder": "Cari",
+  "SubmitButtonText": "Simpan Data",
+  "ContactContainerHeader": "Kontak",
+  "Name": "Nama"
 }

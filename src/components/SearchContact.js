@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
+import { connect } from 'react-redux';
 import I18n from '../I18n/i18n';
 
-export default class SearchContact extends Component {
+class SearchContact extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      filterKeyword: '',
+    };
     this._onChangeSearchInput = this._onChangeSearchInput.bind(this);
   }
 
@@ -15,18 +19,35 @@ export default class SearchContact extends Component {
   render() {
     const { translation } = this.props;
     return (
-        <View style-={styles.searchContainer}>
-          <View style={styles.searchBox}>
+      <View style-={styles.searchContainer}>
+        <View style={styles.searchBox}>
           <TextInput
-              onChangeText={this._onChangeSearchInput}
-              style={styles.searchText}
-              placeholder={I18n.t('SearchPlaceholder', {locale: translation ? 'id' : 'en'})}
+            onChangeText={this._onChangeSearchInput}
+            style={styles.searchText}
+            placeholder={I18n.t('SearchPlaceholder', { locale: translation ? 'id' : 'en' })}
           />
-          </View>
         </View>
+      </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  filterKeyword: state.filterKeyword,
+});
+
+const mapDispatchToProps = dispatch => ({
+  searchNameInput: (filterKeyword) => {
+    dispatch({
+      type: 'FILTER_KEYWORD',
+      payload: {
+        filterKeyword,
+      },
+    });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContact);
 
 const styles = StyleSheet.create({
   searchContainer: {

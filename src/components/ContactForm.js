@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { TextInput, Button, View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import I18n from '../I18n/i18n';
 
-export default class ContactForm extends Component {
+class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,36 +28,59 @@ export default class ContactForm extends Component {
   }
 
   _buttonSumbitData() {
-    const results = {
-      name: this.state.nameInput,
-      email: this.state.emailInput,
-    }
-    this.props.contactFormCallback(results);
+    const { nameInput, emailInput } = this.state;
+    this.props.onSaveContact(nameInput, emailInput);
+    this.setState({
+      nameInput: '',
+      emailInput: '',
+    });
   }
 
   render() {
+    const { nameInput, emailInput } = this.state;
+    const { isIndo } = this.props;
     return (
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
           <TextInput
               style={styles.nameInput}
-              placeholder="Name"
+              placeholder={I18n.t('Name', {locale: isIndo ? 'id' : 'en'})}
               onChangeText={this._onInputNameChange}
+              value={nameInput}
           />
           <TextInput
               style={styles.emailInput}
               placeholder="Email"
               onChangeText={this._onInputEmailChange}
+              value={emailInput}
           />
           </View>
           <Button
               onPress={this._buttonSumbitData}
-              title="Submit Data"
+              title={I18n.t('SubmitButtonText', { locale: isIndo ? 'id' : 'en'})}
           />
         </View>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  isIndo: state.translation
+})
+
+const mapDispatchToProps = dispatch => ({
+  onSaveContact: (name, email) => {
+    dispatch({
+      type: 'ADD_CONTACT',
+      payload: {
+        name,
+        email
+      }
+    })
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 
 const styles = StyleSheet.create({
   formContainer: {
