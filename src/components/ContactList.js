@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import Contact from './Contact';
+import I18n from '../I18n/i18n';
 import ContactForm from './ContactForm';
 import CONTACT from './DummyContact';
 import {
@@ -13,6 +14,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Button
 } from 'react-native';
 import SearchContact from './SearchContact';
 
@@ -23,9 +25,11 @@ export default class ContactList extends Component {
       contactData: [],
       searchInput: '',
       refreshing: false,
+      isIndo : false,
     };
 
     this._searchInput = this._searchInput.bind(this);
+    this._onToggleTranslate = this._onToggleTranslate.bind(this);
   }
 
   componentDidMount() {
@@ -58,13 +62,25 @@ export default class ContactList extends Component {
     return filterList;
   }
 
+  _onToggleTranslate(){
+    const { isIndo } = this.state;
+    this.setState({
+      isIndo: !isIndo,
+    })
+  }
+
   render() {
+    const { isIndo } = this.state;
     return (
         <View style={styles.container}>
           <Text style={styles.welcome}>
-            Contact List
+            {I18n.t('ContactList', {locale: isIndo ? 'id' : 'en'})}
           </Text>
-          <SearchContact searchNameInput={this._searchInput}/>
+          <Button
+            onPress={this._onToggleTranslate}
+            title="Translate"
+          />
+          <SearchContact translation={isIndo} searchNameInput={this._searchInput}/>
           <FlatList
               style={{ height: 450, paddingTop: 20, }}
               refreshing={this.state.refreshing}

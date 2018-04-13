@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Button, TextInput, Text, AlertIOS, StyleSheet } from 'react-native';
+import validate from 'validate.js';
 //import Animation from 'lottie-react-native';
 //import anim from '../../assets/soda_loader.json';
 
@@ -43,12 +44,12 @@ export default class LoginPage extends Component {
 
   _isUsernameEmpty() {
     const { username } = this.state;
-    return username.length === 0;
+    return validate.isEmpty(username);
   }
 
   _isPasswordEmpty() {
     const { password } = this.state;
-    return password.length === 0;
+    return validate.isEmpty(password);
   }
 
   _isCredentialValid() {

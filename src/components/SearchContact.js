@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
+import I18n from '../I18n/i18n';
 
 export default class SearchContact extends Component {
   constructor(props) {
@@ -12,13 +13,14 @@ export default class SearchContact extends Component {
   }
 
   render() {
+    const { translation } = this.props;
     return (
         <View style-={styles.searchContainer}>
           <View style={styles.searchBox}>
           <TextInput
               onChangeText={this._onChangeSearchInput}
               style={styles.searchText}
-              placeholder="Search"
+              placeholder={I18n.t('SearchPlaceholder', {locale: translation ? 'id' : 'en'})}
           />
           </View>
         </View>
