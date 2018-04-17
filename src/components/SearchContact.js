@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
+import actionType from '../reducers/ActionTypes/actionTypes'
 import I18n from '../I18n/i18n';
 
 class SearchContact extends Component {
@@ -39,7 +40,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   searchNameInput: (filterKeyword) => {
     dispatch({
-      type: 'FILTER_KEYWORD',
+      type: actionType.CONTACT.FILTER_KEYWORD,
       payload: {
         filterKeyword,
       },

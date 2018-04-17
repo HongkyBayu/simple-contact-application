@@ -1,7 +1,7 @@
 import 'react-native';
 import { mount } from 'enzyme';
 import React from 'react';
-import Contact from '../src/components/Contact';
+import Contact from '../src/components/ContactItem/Contact.component';
 
 describe('Contact', () => {
   describe('#showDataName', () => {

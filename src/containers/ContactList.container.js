@@ -5,18 +5,14 @@
  */
 
 import React, { Component } from 'react';
-import Contact from './Contact';
-import I18n from '../I18n/i18n';
-import ContactForm from './ContactForm';
+import { FlatList, StyleSheet, Text, View, } from 'react-native';
 import { connect } from 'react-redux';
-import TranslateButton from './TranslateButton';
-import {
-  FlatList,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
-import SearchContact from './SearchContact';
+import { formValueSelector } from 'redux-form';
+import I18n from '../I18n/i18n';
+import Contact from '../components/ContactItem/Contact.component';
+import ContactForm from '../components/ContactForm/ContactForm.component';
+import SearchContact from '../components/SearchContact';
+import TranslateButton from '../components/TranslateButton';
 
 class ContactList extends Component {
   constructor(props) {
@@ -40,30 +36,29 @@ class ContactList extends Component {
   render() {
     const { isIndo } = this.props;
     return (
-        <View style={styles.container}>
-          <Text style={styles.welcome}>
-            {I18n.t('ContactList', {locale: isIndo ? 'id' : 'en'})}
-          </Text>
-          <SearchContact translation={isIndo} />
-          <FlatList
-              style={{ height: 450, paddingTop: 20, }}
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-              data={this.props.visibleContact}
-              keyExtractor={item => item.email}
-              renderItem={({ item: { name, email } }) => (
-                  <Contact
-                      contactName={name}
-                      contactEmail={email}
-                  />
-              )}
-          />
-          <ContactForm />
-        </View>
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          {I18n.t('ContactList', { locale: isIndo ? 'id' : 'en' })}
+        </Text>
+        <SearchContact translation={isIndo} />
+        <FlatList
+          style={{ height: 450, paddingTop: 20, }}
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh.bind(this)}
+          data={this.props.visibleContact}
+          keyExtractor={item => item.email}
+          renderItem={({ item: { name, email } }) => (
+            <Contact
+              contactName={name}
+              contactEmail={email}
+            />
+          )}
+        />
+        <ContactForm />
+      </View>
     );
   }
 }
-
 
 ContactList.navigationOptions = ({ navigation: { goBack } }) => ({
   headerTitle: 'Contact',
@@ -79,10 +74,12 @@ ContactList.navigationOptions = ({ navigation: { goBack } }) => ({
 
 const contactList = new ContactList();
 
-const mapStateToProps = state => ({
-  isIndo : state.translation,
-  visibleContact: contactList.filterContact(state.contact, state.filter),
-});
+mapStateToProps = state => {
+  return {
+    isIndo: state.translation,
+    visibleContact: contactList.filterContact(state.contact, state.filter),
+  }
+};
 
 export default connect(mapStateToProps)(ContactList);
 

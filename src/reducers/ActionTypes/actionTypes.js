@@ -1,0 +1,12 @@
+const actionType = {
+  "CONTACT": {
+    "ADD_CONTACT": "ADD_CONTACT",
+    "FILTER_KEYWORD": "FILTER_KEYWORD",
+    "CONTACT_SAVE_SUCCESS": "CONTACT_SAVE_SUCCESS"
+  },
+  "TRANSLATION": {
+    "TOGGLE_TRANSLATION": "TOGGLE_TRANSLATION"
+  }
+}
+
+export default actionType;

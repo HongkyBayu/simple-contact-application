@@ -1,7 +1,7 @@
 import 'react-native';
 import { shallow } from 'enzyme';
 import React from 'react';
-import ContactForm from '../src/components/ContactForm';
+import ContactForm from '../src/components/ContactForm/ContactForm.component';
 
 describe('Contact From', () => {
   describe('#onChange', () => {

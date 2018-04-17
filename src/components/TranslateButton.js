@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import actionType from '../reducers/ActionTypes/actionTypes'
 
 class TranslateButton extends Component{
 
@@ -28,7 +29,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeLanguage: (isIndo) => {
     dispatch({
-      type: 'TOGGLE_TRANSLATION',
+      type: actionType.TRANSLATION.TOGGLE_TRANSLATION,
       payload: {
         isIndo,
       },

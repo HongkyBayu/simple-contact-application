@@ -3,8 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import LoginPage from '../login/LoginPage';
-import ContactList from './ContactList';
-import rootReducers from '../reducers'
+import ContactList from './ContactList.container';
+import rootReducers from '../reducers/index'
 
 const RootStack = StackNavigator(
   {

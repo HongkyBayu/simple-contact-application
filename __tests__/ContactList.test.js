@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import ContactList from '../src/components/ContactList';
+import ContactList from '../src/containers/ContactList.container';
 import { shallow } from 'enzyme';
 
 describe('ContactList', () => {
