@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, View, } from 'react-native';
 import { connect } from 'react-redux';
-import { formValueSelector } from 'redux-form';
 import I18n from '../I18n/i18n';
 import Contact from '../components/ContactItem/Contact.component';
 import ContactForm from '../components/ContactForm/ContactForm.component';
